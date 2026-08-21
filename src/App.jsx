@@ -22,7 +22,7 @@ const client = generateClient({
 });
 export default function App() {
   const [userprofiles, setUserProfiles] = useState([]);
-  const { signOut } = useAuthenticator((context) => [context.user]);
+  const { user, signOut } = useAuthenticator((context) => [context.user]);
   useEffect(() => {
     fetchUserProfile();
   }, []);
@@ -41,6 +41,9 @@ export default function App() {
     >
       <Heading level={1}>My Profile</Heading>
       <Divider />
+      <Heading level={3}>
+        {user?.signInDetails?.loginId}
+      </Heading>
       <Grid
         margin="3rem 0"
         autoFlow="column"
